@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="100%" overflow="visible" preserveAspectRatio="none" style="display: block;" viewBox="0 0 48 48" width="100%">
+<g clip-path="url(#clip0_0_2011)" id="Auto fix high">
+<g id="Group">
+<g id="Vector">
+</g>
+</g>
+<g id="Group_2">
+<g id="Group_3">
+<path d="M40 14L41.88 9.88L46 8L41.88 6.12L40 2L38.12 6.12L34 8L38.12 9.88L40 14Z" fill="var(--fill-0, black)" id="Vector_2"/>
+<path d="M17 14L18.88 9.88L23 8L18.88 6.12L17 2L15.12 6.12L11 8L15.12 9.88L17 14Z" fill="var(--fill-0, black)" id="Vector_3"/>
+<path d="M40 25L38.12 29.12L34 31L38.12 32.88L40 37L41.88 32.88L46 31L41.88 29.12L40 25Z" fill="var(--fill-0, black)" id="Vector_4"/>
+<path d="M35.4201 18.24L29.7601 12.58C29.3601 12.2 28.8601 12 28.3401 12C27.8201 12 27.3201 12.2 26.9201 12.58L4.58012 34.92C3.80012 35.7 3.80012 36.96 4.58012 37.74L10.2401 43.4C10.6401 43.8 11.1401 44 11.6601 44C12.1801 44 12.6801 43.8 13.0801 43.42L35.4201 21.08C36.2001 20.3 36.2001 19.02 35.4201 18.24ZM28.3401 16.84L31.1601 19.66L28.8201 22L26.0001 19.18L28.3401 16.84ZM11.6601 39.18L8.84012 36.36L23.1801 22L26.0001 24.82L11.6601 39.18Z" fill="var(--fill-0, black)" id="Vector_5"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_2011">
+<rect fill="white" height="48" width="48"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="100%" overflow="visible" preserveAspectRatio="none" style="display: block;" viewBox="0 0 48 48" width="100%">
+<g clip-path="url(#clip0_0_2023)" id="Center focus strong">
+<g id="Vector">
+</g>
+<path d="M34 24C34 18.48 29.52 14 24 14C18.48 14 14 18.48 14 24C14 29.52 18.48 34 24 34C29.52 34 34 29.52 34 24ZM24 30C20.7 30 18 27.3 18 24C18 20.7 20.7 18 24 18C27.3 18 30 20.7 30 24C30 27.3 27.3 30 24 30ZM10 30H6V38C6 40.2 7.8 42 10 42H18V38H10V30ZM10 10H18V6H10C7.8 6 6 7.8 6 10V18H10V10ZM38 6H30V10H38V18H42V10C42 7.8 40.2 6 38 6ZM38 38H30V42H38C40.2 42 42 40.2 42 38V30H38V38Z" fill="var(--fill-0, black)" id="Vector_2"/>
+</g>
+<defs>
+<clipPath id="clip0_0_2023">
+<rect fill="white" height="48" width="48"/>
+</clipPath>
+</defs>
+</svg>
