@@ -5,11 +5,12 @@ import { ArrowRight, Icons } from "../components/icons";
 import { hero, mission, products, team } from "../content";
 
 export default function Home() {
+  const [featured, ...rest] = products.items;
   return (
     <div id="top">
       <Header />
 
-      {/* ---------- HERO — по центру ---------- */}
+      {/* ---------- HERO ---------- */}
       <section className="container flex flex-col items-center pt-20 pb-20 text-center md:pt-28 md:pb-28">
         <h1 className="max-w-[16ch] t-display">
           Делаем из идей бизнесы
@@ -20,7 +21,7 @@ export default function Home() {
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <a href={hero.cta.href} className="btn">
             {hero.cta.label}
-            <ArrowRight className="t-body" aria-hidden="true" />
+            <ArrowRight className="text-lg" aria-hidden="true" />
           </a>
           <a href="#products" className="btn-soft">
             Наши продукты
@@ -36,48 +37,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- MISSION — тёмная плашка, по центру ---------- */}
+      {/* ---------- MISSION ---------- */}
       <section className="bg-[var(--color-ink)] text-[var(--color-bg)]">
         <div className="container flex flex-col items-center py-20 text-center md:py-28">
-          <p className="t-label uppercase text-white/40">
+          <p className="t-label uppercase tracking-widest text-white/40">
             {mission.title}
           </p>
-          <p className="mt-6 max-w-4xl t-title">
-            {mission.text}
-          </p>
+          <p className="mt-6 max-w-4xl t-title">{mission.text}</p>
         </div>
       </section>
 
-      {/* ---------- PRODUCTS — bento ---------- */}
+      {/* ---------- PRODUCTS bento ---------- */}
       <section id="products" className="container py-20 md:py-28">
         <div className="section-head">
-          <h2 className="t-display">{products.title}</h2>
+          <h2 className="t-title">{products.title}</h2>
           <p className="mt-5 t-body text-[var(--color-muted)]">
             {products.subtitle}
           </p>
         </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-3">
-          {products.items.map((p) => (
+        <div className="mt-14 grid gap-4 md:grid-cols-2">
+          {/* Широкая плитка — первый продукт */}
+          <a
+            href={featured.href}
+            className="tile tile-hover group overflow-hidden md:col-span-2 md:grid md:grid-cols-2"
+          >
+            <ProductImage p={featured} className="min-h-[240px]" />
+            <div className="flex flex-col justify-center p-8 md:p-12">
+              <span className="t-label" style={{ color: featured.accent }}>
+                {featured.tagline}
+              </span>
+              <h3 className="mt-2 t-title">{featured.name}</h3>
+              <p className="mt-4 max-w-md t-body text-[var(--color-muted)]">
+                {featured.text}
+              </p>
+              <span className="mt-7 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
+                Подробнее
+                <ArrowRight
+                  className="text-lg transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+            </div>
+          </a>
+
+          {/* Остальные плитки */}
+          {rest.map((p) => (
             <a
               key={p.name}
               href={p.href}
               className="tile tile-hover group flex flex-col overflow-hidden"
             >
-              <div className="aspect-[16/10] overflow-hidden bg-white">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-              </div>
+              <ProductImage p={p} className="aspect-[16/10]" />
               <div className="flex flex-1 flex-col p-8">
                 <span className="t-label" style={{ color: p.accent }}>
                   {p.tagline}
                 </span>
                 <h3 className="mt-2 t-heading">{p.name}</h3>
-                <p className="mt-4 text-[var(--color-muted)]">{p.text}</p>
-                <span className="btn mt-8 self-start group-hover:opacity-90">
+                <p className="mt-3 t-body text-[var(--color-muted)]">{p.text}</p>
+                <span className="mt-6 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
                   Подробнее
                   <ArrowRight
                     className="text-lg transition-transform group-hover:translate-x-1"
@@ -90,7 +108,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- VACANCIES — bento, заголовок по центру ---------- */}
+      {/* ---------- VACANCIES ---------- */}
       <section id="team" className="border-t border-[var(--color-ink)]/10 bg-[var(--color-surface)]">
         <div className="container py-20 md:py-28">
           <div className="section-head">
@@ -116,6 +134,34 @@ export default function Home() {
 
       <CtaBand />
       <Footer />
+    </div>
+  );
+}
+
+// Плитка с изображением или цветным заглушкой (для продуктов без мокапа).
+function ProductImage({ p, className = "" }) {
+  if (p.image) {
+    return (
+      <div className={`overflow-hidden bg-white ${className}`}>
+        <img
+          src={p.image}
+          alt={p.name}
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </div>
+    );
+  }
+  return (
+    <div
+      className={`flex items-center justify-center overflow-hidden ${className}`}
+      style={{ background: p.accent }}
+    >
+      <span
+        className="t-display select-none opacity-20"
+        style={{ color: "#fff", fontSize: "clamp(3rem, 10vw, 7rem)" }}
+      >
+        {p.name.split(".")[0]}
+      </span>
     </div>
   );
 }
