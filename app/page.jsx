@@ -15,7 +15,6 @@ const SERVICES = [
 ];
 
 export default function Home() {
-  const [featured, ...rest] = products.items;
   return (
     <div id="top">
       <Header />
@@ -87,43 +86,52 @@ export default function Home() {
             <p className="mt-5 t-body text-[var(--color-muted)]">{products.subtitle}</p>
           </div>
 
-          <div className="mt-14 grid gap-4 md:grid-cols-2">
-            {/* Широкая плитка — первый продукт */}
-            <a
-              href={featured.href}
-              className="tile tile-hover group overflow-hidden md:col-span-2 md:grid md:grid-cols-2"
-            >
-              <ProductImage p={featured} className="min-h-[240px]" />
-              <div className="flex flex-col justify-center p-8 md:p-12">
-                <span className="t-label" style={{ color: featured.accent }}>
-                  {featured.tagline}
-                </span>
-                <h3 className="mt-2 t-title">{featured.name}</h3>
-                <p className="mt-4 max-w-md t-body text-[var(--color-muted)]">
-                  {featured.text}
-                </p>
-                <span className="mt-7 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
-                  Подробнее
-                  <ArrowRight className="text-lg transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </span>
-              </div>
-            </a>
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {products.items.map((p) => {
+              const Icon = Icons[p.icon];
+              return (
+                <a
+                  key={p.name}
+                  href={p.href}
+                  className="tile tile-hover group flex flex-col p-8"
+                >
+                  {/* Логотип */}
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl"
+                    style={{ background: p.accent + "1a", color: p.accent }}
+                  >
+                    {Icon && <Icon style={{ fontSize: "1.35rem" }} aria-hidden="true" />}
+                  </div>
 
-            {/* Остальные плитки */}
-            {rest.map((p) => (
-              <a key={p.name} href={p.href} className="tile tile-hover group flex flex-col overflow-hidden">
-                <ProductImage p={p} className="aspect-[16/10]" />
-                <div className="flex flex-1 flex-col p-8">
-                  <span className="t-label" style={{ color: p.accent }}>{p.tagline}</span>
-                  <h3 className="mt-2 t-heading">{p.name}</h3>
-                  <p className="mt-3 t-body text-[var(--color-muted)]">{p.text}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
-                    Подробнее
-                    <ArrowRight className="text-lg transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  {/* Тег */}
+                  <span
+                    className="mt-5 self-start rounded-full px-3 py-1 t-label"
+                    style={{ background: p.accent + "18", color: p.accent }}
+                  >
+                    {p.tagline}
                   </span>
-                </div>
-              </a>
-            ))}
+
+                  {/* Название */}
+                  <h3 className="mt-3 t-heading">{p.name}</h3>
+
+                  {/* Описание */}
+                  <p className="mt-3 t-body text-[var(--color-muted)] flex-1">
+                    {p.text}
+                  </p>
+
+                  {/* Кнопка */}
+                  <div className="mt-7">
+                    <span
+                      className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 t-label font-medium text-white transition-opacity group-hover:opacity-85"
+                      style={{ background: p.accent }}
+                    >
+                      Подробнее
+                      <ArrowRight className="text-base transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -158,30 +166,3 @@ export default function Home() {
   );
 }
 
-// Плитка с изображением или цветным заглушкой
-function ProductImage({ p, className = "" }) {
-  if (p.image) {
-    return (
-      <div className={`overflow-hidden bg-white ${className}`}>
-        <img
-          src={p.image}
-          alt={p.name}
-          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-        />
-      </div>
-    );
-  }
-  return (
-    <div
-      className={`flex items-center justify-center overflow-hidden ${className}`}
-      style={{ background: p.accent }}
-    >
-      <span
-        className="select-none opacity-20"
-        style={{ color: "#fff", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(3rem, 10vw, 7rem)", letterSpacing: "-0.03em" }}
-      >
-        {p.name.split(".")[0]}
-      </span>
-    </div>
-  );
-}

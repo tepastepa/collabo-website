@@ -11,7 +11,7 @@ export default function About() {
       {/* ---------- HERO ---------- */}
       <section className="container flex flex-col items-center pt-20 pb-20 text-center md:pt-28 md:pb-24">
         <p className="t-label uppercase text-[var(--color-muted)]">{about.eyebrow}</p>
-        <h1 className="mt-6 max-w-4xl t-display">{about.title}</h1>
+        <h1 className="mt-6 max-w-4xl t-title">{about.title}</h1>
         <p className="mt-8 max-w-2xl t-body text-[var(--color-muted)]">{about.lead}</p>
       </section>
 
@@ -48,10 +48,10 @@ export default function About() {
             {about.principles.map((pr, i) => (
               <div
                 key={pr}
-                className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-8"
+                className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-8 min-h-[200px]"
               >
-                <span className="t-label text-white/30">0{i + 1}</span>
-                <p className="mt-auto pt-10 t-heading">{pr}</p>
+                <span className="t-title text-white/20">0{i + 1}</span>
+                <p className="mt-auto pt-6 t-body">{pr}</p>
               </div>
             ))}
           </div>
@@ -93,10 +93,10 @@ export default function About() {
             <h2 className="t-title">{about.pricingTitle}</h2>
           </div>
           <div className="mx-auto mt-14 grid max-w-3xl gap-4 sm:grid-cols-2">
-            {about.pricing.map((pmodel, i) => (
-              <div key={pmodel} className="tile flex items-baseline gap-5 p-8">
-                <span className="t-heading text-[var(--color-ink)]/25">0{i + 1}</span>
-                <span className="t-heading">{pmodel}</span>
+            {about.pricing.map((pmodel) => (
+              <div key={pmodel.title} className="tile p-8">
+                <h3 className="t-heading">{pmodel.title}</h3>
+                <p className="mt-3 t-body text-[var(--color-muted)]">{pmodel.text}</p>
               </div>
             ))}
           </div>
