@@ -97,7 +97,43 @@ export function Layers(props) {
   );
 }
 
-// Сопоставление имени строки → компонент (для данных в content.js)
+export function Globe(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3c-2 2.5-3 5.5-3 9s1 6.5 3 9M12 3c2 2.5 3 5.5 3 9s-1 6.5-3 9M3 12h18" />
+    </svg>
+  );
+}
+
+export function Cpu(props) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M20 9h2M2 15h2M20 15h2" />
+    </svg>
+  );
+}
+
+export function Chart(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 3v18h18" />
+      <path d="m7 16 4-5 4 3 4-7" />
+    </svg>
+  );
+}
+
+export function Code(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 6l-2 12" />
+    </svg>
+  );
+}
+
+// Сопоставление имени строки → компонент
 export const Icons = {
   arrow: ArrowRight,
   arrowUpRight: ArrowUpRight,
@@ -109,4 +145,8 @@ export const Icons = {
   clock: Clock,
   device: Device,
   layers: Layers,
+  globe: Globe,
+  cpu: Cpu,
+  chart: Chart,
+  code: Code,
 };

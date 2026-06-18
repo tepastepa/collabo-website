@@ -4,6 +4,16 @@ import CtaBand from "../components/CtaBand";
 import { ArrowRight, Icons } from "../components/icons";
 import { hero, mission, products, team } from "../content";
 
+// Компактные сервисы (inline — не загрязняем content.js)
+const SERVICES = [
+  { icon: "globe",   title: "Веб-продукты",          text: "Сайты, порталы, SaaS-платформы" },
+  { icon: "phone",   title: "Мобильные приложения",   text: "iOS и Android, нативно и кросс" },
+  { icon: "cpu",     title: "ИИ и LLM",              text: "Модели, агенты, автоматизация" },
+  { icon: "chart",   title: "Аналитика",              text: "Дашборды, метрики, инсайты" },
+  { icon: "code",    title: "Разработка на заказ",    text: "Полный цикл: архитектура → релиз" },
+  { icon: "layers",  title: "Геосервисы",             text: "Карты, геоданные, маршрутизация" },
+];
+
 export default function Home() {
   const [featured, ...rest] = products.items;
   return (
@@ -23,9 +33,7 @@ export default function Home() {
             {hero.cta.label}
             <ArrowRight className="text-lg" aria-hidden="true" />
           </a>
-          <a href="#products" className="btn-soft">
-            Наши продукты
-          </a>
+          <a href="#products" className="btn-soft">Наши продукты</a>
         </div>
         <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 t-label">
           {hero.tags.map((tag) => (
@@ -40,71 +48,83 @@ export default function Home() {
       {/* ---------- MISSION ---------- */}
       <section className="bg-[var(--color-ink)] text-[var(--color-bg)]">
         <div className="container flex flex-col items-center py-20 text-center md:py-28">
-          <p className="t-label uppercase tracking-widest text-white/40">
-            {mission.title}
-          </p>
+          <p className="t-label uppercase tracking-widest text-white/40">{mission.title}</p>
           <p className="mt-6 max-w-4xl t-title">{mission.text}</p>
         </div>
       </section>
 
-      {/* ---------- PRODUCTS bento ---------- */}
-      <section id="products" className="container py-20 md:py-28">
-        <div className="section-head">
-          <h2 className="t-title">{products.title}</h2>
-          <p className="mt-5 t-body text-[var(--color-muted)]">
-            {products.subtitle}
-          </p>
+      {/* ---------- SERVICES bento ---------- */}
+      <section className="border-t border-[var(--color-ink)]/10">
+        <div className="container py-20 md:py-28">
+          <div className="section-head">
+            <h2 className="t-title">Чем мы занимаемся</h2>
+            <p className="mt-5 t-body text-[var(--color-muted)]">
+              Полный цикл создания цифровых продуктов
+            </p>
+          </div>
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((s) => {
+              const Icon = Icons[s.icon];
+              return (
+                <div key={s.title} className="tile p-8">
+                  <div className="icon-box">
+                    {Icon && <Icon aria-hidden="true" />}
+                  </div>
+                  <h3 className="mt-5 t-heading">{s.title}</h3>
+                  <p className="mt-2 text-[var(--color-muted)]">{s.text}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
+      </section>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2">
-          {/* Широкая плитка — первый продукт */}
-          <a
-            href={featured.href}
-            className="tile tile-hover group overflow-hidden md:col-span-2 md:grid md:grid-cols-2"
-          >
-            <ProductImage p={featured} className="min-h-[240px]" />
-            <div className="flex flex-col justify-center p-8 md:p-12">
-              <span className="t-label" style={{ color: featured.accent }}>
-                {featured.tagline}
-              </span>
-              <h3 className="mt-2 t-title">{featured.name}</h3>
-              <p className="mt-4 max-w-md t-body text-[var(--color-muted)]">
-                {featured.text}
-              </p>
-              <span className="mt-7 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
-                Подробнее
-                <ArrowRight
-                  className="text-lg transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </span>
-            </div>
-          </a>
+      {/* ---------- PRODUCTS bento ---------- */}
+      <section id="products" className="border-t border-[var(--color-ink)]/10">
+        <div className="container py-20 md:py-28">
+          <div className="section-head">
+            <h2 className="t-title">{products.title}</h2>
+            <p className="mt-5 t-body text-[var(--color-muted)]">{products.subtitle}</p>
+          </div>
 
-          {/* Остальные плитки */}
-          {rest.map((p) => (
+          <div className="mt-14 grid gap-4 md:grid-cols-2">
+            {/* Широкая плитка — первый продукт */}
             <a
-              key={p.name}
-              href={p.href}
-              className="tile tile-hover group flex flex-col overflow-hidden"
+              href={featured.href}
+              className="tile tile-hover group overflow-hidden md:col-span-2 md:grid md:grid-cols-2"
             >
-              <ProductImage p={p} className="aspect-[16/10]" />
-              <div className="flex flex-1 flex-col p-8">
-                <span className="t-label" style={{ color: p.accent }}>
-                  {p.tagline}
+              <ProductImage p={featured} className="min-h-[240px]" />
+              <div className="flex flex-col justify-center p-8 md:p-12">
+                <span className="t-label" style={{ color: featured.accent }}>
+                  {featured.tagline}
                 </span>
-                <h3 className="mt-2 t-heading">{p.name}</h3>
-                <p className="mt-3 t-body text-[var(--color-muted)]">{p.text}</p>
-                <span className="mt-6 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
+                <h3 className="mt-2 t-title">{featured.name}</h3>
+                <p className="mt-4 max-w-md t-body text-[var(--color-muted)]">
+                  {featured.text}
+                </p>
+                <span className="mt-7 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
                   Подробнее
-                  <ArrowRight
-                    className="text-lg transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
+                  <ArrowRight className="text-lg transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </div>
             </a>
-          ))}
+
+            {/* Остальные плитки */}
+            {rest.map((p) => (
+              <a key={p.name} href={p.href} className="tile tile-hover group flex flex-col overflow-hidden">
+                <ProductImage p={p} className="aspect-[16/10]" />
+                <div className="flex flex-1 flex-col p-8">
+                  <span className="t-label" style={{ color: p.accent }}>{p.tagline}</span>
+                  <h3 className="mt-2 t-heading">{p.name}</h3>
+                  <p className="mt-3 t-body text-[var(--color-muted)]">{p.text}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 font-medium underline-offset-4 group-hover:underline">
+                    Подробнее
+                    <ArrowRight className="text-lg transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -113,16 +133,16 @@ export default function Home() {
         <div className="container py-20 md:py-28">
           <div className="section-head">
             <h2 className="t-title">{team.title}</h2>
-            <p className="mt-5 t-body text-[var(--color-muted)]">
-              {team.subtitle}
-            </p>
+            <p className="mt-5 t-body text-[var(--color-muted)]">{team.subtitle}</p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {team.roles.map((role) => {
               const Icon = Icons[role.icon];
               return (
                 <div key={role.title} className="tile p-8">
-                  {Icon && <Icon className="text-2xl" aria-hidden="true" />}
+                  <div className="icon-box">
+                    {Icon && <Icon aria-hidden="true" />}
+                  </div>
                   <h3 className="mt-6 t-heading">{role.title}</h3>
                   <p className="mt-3 text-[var(--color-muted)]">{role.text}</p>
                 </div>
@@ -138,7 +158,7 @@ export default function Home() {
   );
 }
 
-// Плитка с изображением или цветным заглушкой (для продуктов без мокапа).
+// Плитка с изображением или цветным заглушкой
 function ProductImage({ p, className = "" }) {
   if (p.image) {
     return (
@@ -157,8 +177,8 @@ function ProductImage({ p, className = "" }) {
       style={{ background: p.accent }}
     >
       <span
-        className="t-display select-none opacity-20"
-        style={{ color: "#fff", fontSize: "clamp(3rem, 10vw, 7rem)" }}
+        className="select-none opacity-20"
+        style={{ color: "#fff", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(3rem, 10vw, 7rem)", letterSpacing: "-0.03em" }}
       >
         {p.name.split(".")[0]}
       </span>
