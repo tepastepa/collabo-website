@@ -1,13 +1,5 @@
 import VacancyApplyForm from "./VacancyApplyForm";
-import { Clock, Icons } from "./icons";
-
-function formatDate(iso) {
-  return new Date(iso).toLocaleDateString("ru-RU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
+import { Icons } from "./icons";
 
 function VacancyList({ title, items, accent }) {
   if (!items?.length) return null;
@@ -41,51 +33,35 @@ export default function VacancyCard({ vacancy, formCopy, archived = false }) {
         archived ? "opacity-75" : ""
       }`}
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div className="flex items-start gap-4">
-          <div
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"
-            style={{
-              background: vacancy.accent + (archived ? "12" : "1a"),
-              color: vacancy.accent,
-            }}
-          >
-            {Icon && <Icon style={{ fontSize: "1.35rem" }} aria-hidden="true" />}
-          </div>
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span
-                className="rounded-full px-3 py-1 t-label"
-                style={{
-                  background: vacancy.accent + "14",
-                  color: vacancy.accent,
-                }}
-              >
-                {vacancy.department}
-              </span>
-              {archived && (
-                <span className="rounded-full bg-[var(--color-ink)]/8 px-3 py-1 t-label text-[var(--color-muted)]">
-                  Закрыта
-                </span>
-              )}
-            </div>
-            <h2 className="mt-3 t-heading">{vacancy.title}</h2>
-            <p className="mt-1 t-label text-[var(--color-muted)]">{vacancy.product}</p>
-          </div>
+      <div className="flex items-start gap-4">
+        <div
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"
+          style={{
+            background: vacancy.accent + (archived ? "12" : "1a"),
+            color: vacancy.accent,
+          }}
+        >
+          {Icon && <Icon style={{ fontSize: "1.35rem" }} aria-hidden="true" />}
         </div>
-
-        <div className="text-right t-label text-[var(--color-muted)]">
-          {archived ? (
-            <>
-              <p>Закрыта {formatDate(vacancy.closedAt)}</p>
-              <p className="mt-1 opacity-70">Опубликована {formatDate(vacancy.postedAt)}</p>
-            </>
-          ) : (
-            <p className="flex items-center justify-end gap-1.5">
-              <Clock className="text-base" aria-hidden="true" />
-              {formatDate(vacancy.postedAt)}
-            </p>
-          )}
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span
+              className="rounded-full px-3 py-1 t-label"
+              style={{
+                background: vacancy.accent + "14",
+                color: vacancy.accent,
+              }}
+            >
+              {vacancy.department}
+            </span>
+            {archived && (
+              <span className="rounded-full bg-[var(--color-ink)]/8 px-3 py-1 t-label text-[var(--color-muted)]">
+                Закрыта
+              </span>
+            )}
+          </div>
+          <h2 className="mt-3 t-heading">{vacancy.title}</h2>
+          <p className="mt-1 t-label text-[var(--color-muted)]">{vacancy.product}</p>
         </div>
       </div>
 
