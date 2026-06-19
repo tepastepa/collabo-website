@@ -19,6 +19,21 @@ export const metadata = {
   description:
     "Превращаем цифровые идеи в работающие продукты: автоматизация бизнеса, образовательные платформы и ИИ-инструменты.",
   icons: { icon: "/assets/logo.svg" },
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    noarchive: true,
+    nosnippet: true,
+    noimageindex: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noarchive: true,
+      nosnippet: true,
+      noimageindex: true,
+    },
+  },
   openGraph: {
     title: "Collabo Team — делаем из идей бизнесы",
     description:
