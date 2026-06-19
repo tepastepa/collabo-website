@@ -157,6 +157,12 @@ export default function Home() {
               );
             })}
           </div>
+          <div className="mt-12 flex justify-center">
+            <a href={team.cta.href} className="btn">
+              {team.cta.label}
+              <ArrowRight className="text-lg" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 
